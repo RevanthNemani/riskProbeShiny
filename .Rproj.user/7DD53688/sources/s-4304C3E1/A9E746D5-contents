@@ -1,0 +1,103 @@
+Box1 <- function() {
+  shiny::renderUI(
+    shinyWidgets::progressBar(
+      id = ns("pbar"),
+      value = 0,
+      total = NULL,
+      title = NULL ,
+      display_pct = TRUE,
+      range_value = NULL,
+      status = "custom"
+    ),
+    column(
+      offset = 5,
+      width = 7,
+      shinydashboardPlus::starBlock(
+        maxstar = 5,
+        grade = 0,
+        color = "purple"
+      )
+    ),
+    br(),
+    column(
+      offset = 6,
+      width = 6,
+      shinydashboardPlus::dashboardLabel("Watchlist", status = "warning", style = "square")
+    ),
+    br(),
+    renderText(
+      "KOLMOGOROV SMIRNOV (KS) METRIC IS THE MAXIMUM VERTICAL DIFFERENCE BETWEEN THE CUMULATIVE LIFT CURVE OF DEFAULTERS AND NON-DEFAULTERS"
+    ),
+    renderPlot(hist(x = c(6, 7, 8))),
+    br(),
+    br(),
+    renderText("value 1: 45%, Value 2: 30%"),
+    br(),
+    br()
+  )
+}
+
+
+
+list(
+  shiny::column(
+    width = 6,
+    shinydashboard::box(
+      title = "KS",
+      status = "warning",
+      width = 12,
+      collapsible = T,
+      shinyWidgets::progressBar(
+        id = "pb2",
+        value = 0,
+        total = NULL,
+        title = NULL ,
+        display_pct = TRUE,
+        range_value = NULL,
+        status = "custom"
+      ),
+      column(
+        offset = 5,
+        width = 7,
+        shinydashboardPlus::starBlock(
+          maxstar = 5,
+          grade = 0,
+          color = "purple"
+        )
+      ),
+      br(),
+      column(
+        offset = 5,
+        width = 7,
+        shinydashboardPlus::dashboardLabel("Watchlist", status = "warning", style = "square")
+      ),
+      br(),
+      renderText(
+        "KOLMOGOROV SMIRNOV (KS) METRIC IS THE MAXIMUM VERTICAL DIFFERENCE BETWEEN THE CUMULATIVE LIFT CURVE OF DEFAULTERS AND NON-DEFAULTERS"
+      ),
+      renderPlot(hist(x = c(6, 7, 8))),
+      br(),
+      br(),
+      renderText("value 1: 45%, Value 2: 30%"),
+      br(),
+      br(),
+    ),
+    shinydashboard::box(
+      title = "Description",
+      status = "primary",
+      collapsible = T,
+      collapsed = T,
+      width = 12,
+      includeHTML("docs/ks.html")
+    )
+  ),
+  column(
+    width = 6,
+    shinydashboard::box(
+      title = "KS",
+      status = "warning",
+      width = 12,
+      collapsible = T
+    ),
+  )
+)
