@@ -218,30 +218,14 @@ QBoxUI <- function(id,
 #'
 #' Call via \code{shiny::callModule(QBox, "your_id", ...)}
 #'
-#' @param id Shiny id
-#' @param question.box.1.title question box 1 title
-#' @param question.box.1.status question box 1 status
-#' @param question.box.1.tab.1 tab name
-#' @param question.box.1.tab.2 tab name
-#' @param question.box.2.title question box 2 title
-#' @param question.box.2.status question box 2 status
-#' @param question.box.2.tab.1 tab name
-#' @param question.box.2.tab.2 tab name
-#' @param question.box.3.title question box 3 title
-#' @param question.box.3.status question box 3 status
-#' @param question.box.3.tab.1 tab name
-#' @param question.box.3.tab.2 tab name
-#' @param question.box.3.tab.3 tab name
-#' @param question.box.3.tab.4 tab name
-#' @param question.box.4.title question box 4 title
-#' @param question.box.4.status question box 4 status
-#' @param question.box.4.tab.1 tab name
-#' @param question.box.4.tab.2 tab name
-#' @param submit.button.label label for the submit button
+#' @param input shiny input
+#' @param output shiny output
+#' @param session shiny session
+#' @param submit.button.label The submit button title
 #'
 #' @import shiny
-#' @importFrom shinydashboard box
-#' @importFrom shinyWidgets radioGroupButtons actionBttn
+#' @importFrom shinyWidgets knobInput
+#' @importFrom shinyWidgets actionBttn
 #'
 #' @return Shiny UI
 #'
@@ -251,7 +235,7 @@ QBoxUI <- function(id,
 QBox <- function(input,
                  output,
                  session,
-                 ) {
+                 submit.button.label = "Submit Again") {
   observeEvent(input$button, {
     output$scoring <- renderUI({
       list(
@@ -277,8 +261,7 @@ QBox <- function(input,
             knob.value = 30
           )
         ),
-
-        column(
+        shiny::column(
           width = 6,
           align = "center",
           shiny::br(),
@@ -292,7 +275,7 @@ QBox <- function(input,
           shiny::br(),
           shiny::br(),
           shiny::div(h2("Qualitative Score"), style = "text-align: center;"),
-          knobInput(
+          shinyWidgets::knobInput(
             height = 300,
             width = 300,
             inputId = "qual_sc",
@@ -304,7 +287,7 @@ QBox <- function(input,
             fgColor = "#8E44AD"
           )
         ),
-        column(
+        shiny::column(
           width = 3,
           align = "center",
           ScoreBox(

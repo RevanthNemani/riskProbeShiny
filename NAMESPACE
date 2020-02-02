@@ -2,6 +2,7 @@
 
 export(Box1)
 export(Box1UI)
+export(QBox)
 export(QBoxUI)
 export(ScoreBox)
 import(shiny)
